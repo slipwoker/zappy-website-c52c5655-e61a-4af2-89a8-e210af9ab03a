@@ -1,6 +1,4 @@
-# סטודיו 242 — Generative Engine Optimization Map
-
-> A עיצוב ומיתוג פנים business.
+# Business — Generative Engine Optimization Map
 
 ---
 
@@ -36,15 +34,7 @@ Information about WCAG compliance and accessibility features.
 
 # Business Context (for LLM understanding)
 
-## About סטודיו 242
-סטודיו 242 is a business in the עיצוב ומיתוג פנים industry.
-
-## Target Audience
-חללי לובי מסחרי, חללי אירוח, מסעדות, תיירות ומלונאות, משרדי הייטק, חברות וארגונים
-
-## Industry
-עיצוב ומיתוג פנים
-
+## About Business
 ---
 
 # Additional Resources
