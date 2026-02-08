@@ -1,0 +1,555 @@
+<!DOCTYPE html><html lang="he" dir="rtl"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>תיק עבודות - סטודיו 242</title>
+  <meta name="description" content="Portfolio - סטודיו 242 provides professional עיצוב ומיתוג פנים services. Specializing in עיצוב קירות אומנות למשרדים.">
+  <meta name="keywords" content="עיצוב קירות אומנות למשרדים, מיתוג חזותי לחללים מסחריים, אומנות לובי מלון ייחודית, קיר עוגן למשרדי הייטק">
+  <meta name="robots" content="index, follow">
+  
+  <meta property="og:title" content="תיק עבודות - סטודיו 242">
+  <meta property="og:description" content="Portfolio - סטודיו 242 provides professional עיצוב ומיתוג פנים services. Specializing in עיצוב קירות אומנות למשרדים.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="he_IL">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="תיק עבודות - סטודיו 242">
+  <meta name="twitter:description" content="Portfolio - סטודיו 242 provides professional עיצוב ומיתוג פנים services. Specializing in עיצוב קירות אומנות למשרדים.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.umd.js"></script>
+    <!-- Mickidum Accessibility Toolbar -->
+    <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
+<!-- Zappy Analytics -->
+<script>
+(function() {
+  'use strict';
+  
+  // Configuration
+  var config = {
+    websiteId: 'c52c5655-e61a-4af2-89a8-e210af9ab03a',
+    apiUrl: 'https://api.zappy5.com/api/analytics/track',
+    sessionDuration: 30 * 60 * 1000, // 30 minutes
+    visitorDuration: 30 * 24 * 60 * 60 * 1000, // 30 days
+    trackPageViews: true,
+    trackClicks: true,
+    trackFormSubmissions: true
+  };
+  
+  // Generate or retrieve persistent visitor ID (30 days)
+  function getVisitorId() {
+    var visitorKey = 'zappy_visitor_' + config.websiteId;
+    var visitor = null;
+    
+    try {
+      visitor = localStorage.getItem(visitorKey);
+      if (visitor) {
+        var visitorData = JSON.parse(visitor);
+        var now = Date.now();
+        
+        // Check if visitor ID is still valid (30 days)
+        if (now - visitorData.created < config.visitorDuration) {
+          // Update last seen timestamp
+          visitorData.lastSeen = now;
+          localStorage.setItem(visitorKey, JSON.stringify(visitorData));
+          return visitorData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: LocalStorage not available');
+    }
+    
+    // Generate new visitor ID
+    var newVisitorId = 'zv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      localStorage.setItem(visitorKey, JSON.stringify({
+        id: newVisitorId,
+        created: Date.now(),
+        lastSeen: Date.now()
+      }));
+    } catch (e) {
+      // Continue without local storage
+    }
+    
+    return newVisitorId;
+  }
+  
+  // Generate or retrieve session ID (30 minutes)
+  function getSessionId() {
+    var sessionKey = 'zappy_session_' + config.websiteId;
+    var session = null;
+    
+    try {
+      session = sessionStorage.getItem(sessionKey);
+      if (session) {
+        var sessionData = JSON.parse(session);
+        var now = Date.now();
+        
+        // Check if session is still valid
+        if (now - sessionData.timestamp < config.sessionDuration) {
+          // Update timestamp
+          sessionData.timestamp = now;
+          sessionStorage.setItem(sessionKey, JSON.stringify(sessionData));
+          return sessionData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: SessionStorage not available');
+    }
+    
+    // Generate new session ID
+    var newSessionId = 'zs_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      sessionStorage.setItem(sessionKey, JSON.stringify({
+        id: newSessionId,
+        timestamp: Date.now()
+      }));
+    } catch (e) {
+      // Continue without session storage
+    }
+    
+    return newSessionId;
+  }
+  
+  var visitorId = getVisitorId();
+  var sessionId = getSessionId();
+  
+  // Track an event
+  function trackEvent(eventType, data) {
+    data = data || {};
+    
+    var eventData = {
+      website_id: config.websiteId,
+      event_type: eventType,
+      page_path: window.location.pathname,
+      referrer: document.referrer || 'direct',
+      visitor_id: visitorId,
+      session_id: sessionId,
+      metadata: data
+    };
+    
+    // Use sendBeacon if available (better for page unload events)
+    if (navigator.sendBeacon) {
+      var blob = new Blob([JSON.stringify(eventData)], { type: 'application/json' });
+      navigator.sendBeacon(config.apiUrl, blob);
+    } else {
+      // Fallback to fetch
+      fetch(config.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventData),
+        keepalive: true
+      }).catch(function(error) {
+        console.warn('Zappy Analytics: Failed to track event', error);
+      });
+    }
+  }
+  
+  // Track page view
+  if (config.trackPageViews) {
+    trackEvent('pageview', {
+      title: document.title,
+      url: window.location.href
+    });
+  }
+  
+  // Track clicks on important elements
+  if (config.trackClicks) {
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      
+      // Track button clicks (counted as actions)
+      if (target.tagName === 'BUTTON' || target.closest('button')) {
+        var button = target.tagName === 'BUTTON' ? target : target.closest('button');
+        trackEvent('click', {
+          element: 'button',
+          text: button.textContent.trim().substring(0, 100),
+          id: button.id || null,
+          class: button.className || null
+        });
+      }
+      
+      // Track link clicks (navigation - not counted as actions)
+      else if (target.tagName === 'A' || target.closest('a')) {
+        var link = target.tagName === 'A' ? target : target.closest('a');
+        trackEvent('navigation', {
+          element: 'link',
+          text: link.textContent.trim().substring(0, 100),
+          href: link.href,
+          external: link.hostname !== window.location.hostname
+        });
+      }
+    }, true);
+  }
+  
+  // Track form submissions
+  if (config.trackFormSubmissions) {
+    document.addEventListener('submit', function(e) {
+      var form = e.target;
+      
+      trackEvent('form_submit', {
+        form_id: form.id || null,
+        form_name: form.name || null,
+        form_action: form.action || null,
+        form_method: form.method || 'GET'
+      });
+    }, true);
+  }
+  
+  // Track time on page (send on page unload)
+  var pageLoadTime = Date.now();
+  
+  window.addEventListener('beforeunload', function() {
+    var timeOnPage = Math.floor((Date.now() - pageLoadTime) / 1000); // in seconds
+    
+    trackEvent('page_unload', {
+      time_on_page: timeOnPage,
+      page_path: window.location.pathname
+    });
+  });
+  
+  // Expose tracking function globally for custom events
+  window.zappyAnalytics = {
+    track: trackEvent,
+    getVisitorId: function() { return visitorId; },
+    getSessionId: function() { return sessionId; }
+  };
+  
+})();
+</script>
+<!-- End Zappy Analytics -->
+
+    <style id="zappy-dropdown-submenu-styles">
+      /* ========== DESKTOP DROPDOWN SUBMENU STYLES ========== */
+      /* Base styles for dropdown submenus - parent must be positioned */
+      .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { position: relative; }
+      /* Submenu base - hidden by default */
+      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; background: white; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
+      /* CRITICAL: Desktop hover styles to show dropdown */
+      .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Submenu item styling */
+      .sub-menu li { list-style: none; margin: 0; padding: 0; }
+      .sub-menu a { display: block !important; padding: 10px 16px !important; color: #333 !important; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color 0.2s; }
+      .sub-menu a:hover { background-color: #f5f5f5; }
+      /* RTL (Hebrew/Arabic) dropdown positioning */
+      [dir="rtl"] .nav-menu .sub-menu, [dir="rtl"] nav .sub-menu, [dir="rtl"] .navbar .sub-menu, html[lang="he"] .nav-menu .sub-menu, html[lang="he"] nav .sub-menu, html[lang="he"] .navbar .sub-menu, html[lang="ar"] .nav-menu .sub-menu, html[lang="ar"] nav .sub-menu, html[lang="ar"] .navbar .sub-menu { left: auto !important; right: 0 !important; }
+      /* Hide empty dropdown menus */
+      .sub-menu:empty, .sub-menu:not(:has(li:not(.zappy-hidden-menu-item))), .sub-menu:not(:has(li)) { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+      /* Desktop: show submenu on Menu Group hover */
+      li:has(.menu-group-title):hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Menu Group title styling */
+      .nav-menu > li > .menu-group-title, #navMenu > li > .menu-group-title { display: inline-block; padding: 0.5rem 1rem; cursor: default; user-select: none; }
+      
+      /* ========== MOBILE SUBMENU STYLES ========== */
+      @media (max-width: 768px) {
+        .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { position: static !important; transform: none !important; box-shadow: none !important; background: transparent !important; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; padding: 0 !important; border-radius: 0 !important; }
+        .sub-menu.mobile-expanded { max-height: 500px !important; opacity: 1 !important; visibility: visible !important; padding: 8px 0 8px 16px !important; }
+        [dir="rtl"] .sub-menu.mobile-expanded, html[lang="he"] .sub-menu.mobile-expanded { padding: 8px 16px 8px 0 !important; }
+        /* Disable hover behavior on mobile */
+        .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 0; visibility: hidden; pointer-events: none; }
+        .nav-menu li > .sub-menu.mobile-expanded, nav li > .sub-menu.mobile-expanded, .navbar li > .sub-menu.mobile-expanded, #navMenu li > .sub-menu.mobile-expanded { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+        .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { display: flex !important; flex-wrap: wrap !important; align-items: center !important; }
+        .nav-menu li:has(.sub-menu) > a, nav li:has(.sub-menu) > a, .navbar li:has(.sub-menu) > a, #navMenu li:has(.sub-menu) > a { flex: 1 !important; }
+        .nav-menu li:has(.sub-menu) > a [class*="chevron"], .nav-menu li:has(.sub-menu) > a [class*="arrow"], .nav-menu li:has(.sub-menu) > a .fa-chevron-down, .nav-menu li:has(.sub-menu) > a .fa-angle-down, nav li:has(.sub-menu) > a [class*="chevron"], nav li:has(.sub-menu) > a [class*="arrow"], #navMenu li:has(.sub-menu) > a [class*="chevron"], #navMenu li:has(.sub-menu) > a [class*="arrow"] { display: none !important; visibility: hidden !important; }
+        .mobile-submenu-toggle { display: flex !important; align-items: center !important; justify-content: center !important; width: 44px !important; height: 44px !important; background: transparent !important; border: none !important; cursor: pointer !important; }
+        .mobile-submenu-toggle::after { content: '' !important; width: 0 !important; height: 0 !important; border-left: 6px solid transparent !important; border-right: 6px solid transparent !important; border-top: 7px solid currentColor !important; transition: transform 0.3s ease !important; }
+        .mobile-submenu-toggle.expanded::after { transform: rotate(180deg) !important; }
+        .nav-menu li:has(.sub-menu) > .sub-menu, nav li:has(.sub-menu) > .sub-menu { flex-basis: 100% !important; width: 100% !important; }
+        .sub-menu a { padding: 10px 0 !important; display: block !important; }
+        .nav-menu li:has(.sub-menu) > .menu-group-title, nav li:has(.sub-menu) > .menu-group-title, .navbar li:has(.sub-menu) > .menu-group-title, #navMenu li:has(.sub-menu) > .menu-group-title { flex: 1 !important; }
+      }
+      @media (min-width: 769px) { .mobile-submenu-toggle { display: none !important; } }
+    </style>
+</head>
+<body>
+  <nav class="navbar" dir="rtl">
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+    <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none;">
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+  </button>
+  
+  <button class="phone-header-btn" aria-label="Call">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+    </svg>
+  </button>
+  
+  <div class="nav-container">
+    <div class="nav-brand">
+      <a href="/" class="logo-link">
+        <img class="logo" data-placeholder="logo" data-context="business logo" width="160" height="40" src="" alt="סטודיו 242">
+      </a>
+    </div>
+    
+    <ul class="nav-menu" id="navMenu"><li><a href="/services">שירותים</a></li><li><a href="/portfolio">תיק עבודות</a></li></ul>
+    
+    <div class="nav-cta-container">
+      <a href="/contact" class="nav-cta-btn">צור קשר</a>
+    </div>
+  </div>
+</nav>
+  
+  <main>
+    <section class="portfolio-page-intro-section" data-layout-spec="Portfolio-page-intro">
+  <div class="portfolio-page-intro-container">
+    <div class="portfolio-page-intro-content">
+      <div class="portfolio-page-intro-text-column">
+        <h1 class="portfolio-page-intro-title">תיק עבודות</h1>
+        <p class="portfolio-page-intro-description">כל פרויקט שאנו יוצרים מותאם אישית לזהות המותג ולאופי המקום. אנו מאמינים שעיצוב פנים איכותי צריך לשקף את הסיפור הייחודי של כל עסק ולהעניק חוויה בלתי נשכחת לאורחים.</p>
+        <p class="portfolio-page-intro-emphasis">הדגש שלנו הוא על אומנות ידנית, חומרים עמידים ואיכותיים, ויצירת חוויית אירוח שנשארת בזיכרון.</p>
+      </div>
+      <div class="portfolio-page-intro-image-column">
+        <div class="portfolio-page-intro-image-frame">
+          <img data-placeholder="portfolio-page-intro-image-1" data-context="Elegant hospitality interior wall with warm ambient lighting, showing a finished commercial lobby or hotel space with natural materials, subtle wood grain texture, soft cream and terracotta tones, professional interior design photography, welcoming atmosphere" width="600" height="700" src="/assets/site-portfolio-page-intro-image-1.webp" alt="חלל אירוח מעוצב עם תאורה חמה וחומרים טבעיים">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-page-intro-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 L0,35 Q20,30 40,32 Q60,34 80,30 Q100,28 120,33 Q140,35 160,31 Q180,29 200,34 Q220,36 240,32 Q260,30 280,35 Q300,37 320,33 Q340,31 360,36 Q380,38 400,34 Q420,32 440,37 Q460,39 480,35 Q500,33 520,38 Q540,40 560,36 Q580,34 600,39 Q620,41 640,37 Q660,35 680,40 Q700,42 720,38 Q740,36 760,41 Q780,43 800,39 Q820,37 840,42 Q860,44 880,40 Q900,38 920,43 Q940,45 960,41 Q980,39 1000,44 Q1020,46 1040,42 Q1060,40 1080,45 Q1100,47 1120,43 Q1140,41 1160,46 Q1180,48 1200,44 L1200,60 Z" fill="var(--bg-light)"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="portfolio-showcase-section" data-layout-spec="Portfolio-showcase">
+  <div class="portfolio-showcase-container">
+    <div class="portfolio-showcase-header">
+      <h2>יצירה בהקשר</h2>
+      <p>כל פרויקט מתחיל בהבנת החומרים, טכניקות הגימור ופרטי ההתקנה. אנחנו מביאים לחלל שלכם לא רק עיצוב, אלא גם איכות ביצוע שמורגשת בכל פרט – מהמרקם ועד לתאורה, מהמסגור ועד למיקום המדויק.</p>
+    </div>
+    
+    <div class="portfolio-showcase-grid">
+      <div class="portfolio-showcase-item portfolio-showcase-item-span">
+        <img data-placeholder="portfolio-showcase-image-1" data-context="Close-up photo of hands working with interior design materials - fabric samples, wood textures, and color swatches on a warm neutral table, soft natural lighting, professional studio setting for interior design and branding" width="800" height="600" src="/assets/site-portfolio-showcase-image-1.webp" alt="עבודה עם חומרים ודוגמאות בסטודיו">
+      </div>
+      
+      <div class="portfolio-showcase-item">
+        <img data-placeholder="portfolio-showcase-image-2" data-context="Artistic detail shot of a paintbrush applying texture to a wall surface, showing grain and soft shadows, warm earthy tones, interior design craftsmanship" width="400" height="600" src="/assets/site-portfolio-showcase-image-2.webp" alt="מרקם וגימור קיר באיכות גבוהה">
+      </div>
+      
+      <div class="portfolio-showcase-item">
+        <img data-placeholder="portfolio-showcase-image-3" data-context="Mid-shot of art piece being positioned on a commercial lobby wall, showing hands adjusting framing, professional installation process, warm lighting" width="400" height="600" src="/assets/site-portfolio-showcase-image-3.webp" alt="התקנת אומנות במרחב מסחרי">
+      </div>
+      
+      <div class="portfolio-showcase-item">
+        <img data-placeholder="portfolio-showcase-image-4" data-context="Wide shot of elegant hotel lobby with custom wall art installation, warm neutral tones, modern hospitality design, soft ambient lighting, welcoming atmosphere" width="400" height="600" src="/assets/site-portfolio-showcase-image-4.webp" alt="לובי מלון עם עיצוב קירות מותאם אישית">
+      </div>
+      
+      <div class="portfolio-showcase-item portfolio-showcase-item-span">
+        <img data-placeholder="portfolio-showcase-image-5" data-context="Wide shot of modern restaurant dining area with custom wall branding and art, warm earthy color palette, elegant lighting design, hospitality interior" width="800" height="600" src="/assets/site-portfolio-showcase-image-5.webp" alt="מסעדה עם מיתוג חזותי ואומנות קירות">
+      </div>
+      
+      <div class="portfolio-showcase-item">
+        <img data-placeholder="portfolio-showcase-image-6" data-context="Close-up of material samples laid out - natural wood, stone, fabric textures, showing quality and finish details for interior design" width="400" height="600" src="/assets/site-portfolio-showcase-image-6.webp" alt="דוגמאות חומרים לעיצוב פנים">
+      </div>
+      
+      <div class="portfolio-showcase-item">
+        <img data-placeholder="portfolio-showcase-image-7" data-context="Mid-shot of modern tech office corridor with custom wall art and branding, clean lines, warm neutral colors, professional workspace design" width="400" height="600" src="/assets/site-portfolio-showcase-image-7.webp" alt="מסדרון במשרדי הייטק עם קיר עוגן">
+      </div>
+      
+      <div class="portfolio-showcase-item">
+        <img data-placeholder="portfolio-showcase-image-8" data-context="Detail shot of lighting fixture illuminating custom wall art in commercial space, showing shadow play and warm ambient glow" width="400" height="600" src="/assets/site-portfolio-showcase-image-8.webp" alt="תאורה מותאמת לאומנות קירות">
+      </div>
+      
+      <div class="portfolio-showcase-item">
+        <img data-placeholder="portfolio-showcase-image-9" data-context="Wide shot of elegant commercial reception area with custom wall branding, warm earthy tones, welcoming atmosphere, hospitality design" width="400" height="600" src="/assets/site-portfolio-showcase-image-9.webp" alt="קבלה מסחרית עם מיתוג חזותי">
+      </div>
+    </div>
+    
+    <div class="portfolio-showcase-cta">
+      <a href="/contact" class="btn-primary">בואו נדבר על החלל שלכם</a>
+    </div>
+  </div>
+  
+  <div class="portfolio-showcase-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="angled-clip">
+          <path d="M0,100 L0,30 L1200,0 L1200,100 Z"></path>
+        </clipPath>
+      </defs>
+      <rect x="0" y="0" width="1200" height="100" fill="#E7DDCF" clip-path="url(#angled-clip)"></rect>
+      <rect x="0" y="30" width="1200" height="70" fill="rgba(110,122,85,0.15)"></rect>
+      <path d="M0,100 L0,65 Q50,68 100,65 T200,68 L300,100 Z" fill="#C76B4B" opacity="0.35"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="portfolio-case-studies-section" data-layout-spec="Portfolio-case-studies">
+  <div class="portfolio-case-studies-container">
+    <div class="portfolio-case-studies-header">
+      <h2>כמה סיפורים שמאחורי הקירות</h2>
+    </div>
+    <div class="portfolio-case-studies-grid">
+      <article class="portfolio-case-studies-card">
+        <div class="portfolio-case-studies-card-image-wrapper">
+          <img data-placeholder="portfolio-case-studies-image-1" data-context="Elegant hotel lobby anchor wall with custom artistic mural featuring warm earth tones, terracotta and olive accents, textured plaster finish, ambient lighting highlighting the wall design, sophisticated hospitality interior design" width="600" height="400" src="/assets/site-portfolio-case-studies-image-1.webp" alt="קיר עוגן בלובי בוטיק">
+        </div>
+        <div class="portfolio-case-studies-card-content">
+          <h3>קיר עוגן בלובי בוטיק</h3>
+          <p class="portfolio-case-studies-card-description">לובי מלון בוטיק שחיפש נקודת מוקד חזותית שתקבל את האורחים ותשדר זהות ייחודית. פיתחנו קיר אומנות מותאם אישית המשלב טקסטורות טבעיות, צבעי אדמה חמים ואלמנטים גרפיים עדינים. התוצאה: חלל כניסה שמזמין, מרשים ונשאר בזיכרון.</p>
+          <p class="portfolio-case-studies-card-deliverables"><strong>הביצוע:</strong> ציור קיר בטכניקת טיח מרקם, תאורת הדגשה אינטגרטיבית, התאמה צבעונית למותג המלון</p>
+        </div>
+      </article>
+      <article class="portfolio-case-studies-card">
+        <div class="portfolio-case-studies-card-image-wrapper">
+          <img data-placeholder="portfolio-case-studies-image-2" data-context="Modern restaurant dining area with refreshed atmospheric design, warm ambient lighting, natural materials like wood and stone, artistic wall treatments in terracotta and cream tones, intimate dining atmosphere" width="600" height="400" src="/assets/site-portfolio-case-studies-image-2.webp" alt="רענון אווירת אוכל במסעדה">
+        </div>
+        <div class="portfolio-case-studies-card-content">
+          <h3>רענון אווירת אוכל במסעדה</h3>
+          <p class="portfolio-case-studies-card-description">מסעדה עירונית שרצתה להעמיק את חוויית הסועדים מבלי לסגור לשיפוץ כולל. יצרנו שפה עיצובית חדשה לקירות אזור האוכל—שילוב של פאנלים מעוצבים, תאורה אינטימית וצבעי אקלימה רכים. העיצוב הוסיף שכבת חום ואלגנטיות שהופכת כל ארוחה לחגיגה קטנה.</p>
+          <p class="portfolio-case-studies-card-deliverables"><strong>הביצוע:</strong> פאנלים עץ מעוצבים, גוונים חמים בהתזה, מערכת תאורה נסתרת, התקנה מהירה ללא שיבושים תפעוליים</p>
+        </div>
+      </article>
+      <article class="portfolio-case-studies-card">
+        <div class="portfolio-case-studies-card-image-wrapper">
+          <img data-placeholder="portfolio-case-studies-image-3" data-context="Corporate office corridor with artistic wayfinding solution, modern abstract art installations, directional visual elements integrated into wall design, clean professional aesthetic with warm color accents" width="600" height="400" src="/assets/site-portfolio-case-studies-image-3.webp" alt="ניווט במסדרון דרך אומנות">
+        </div>
+        <div class="portfolio-case-studies-card-content">
+          <h3>ניווט במסדרון דרך אומנות</h3>
+          <p class="portfolio-case-studies-card-description">משרדי חברת הייטק עם מסדרונות ארוכים שהרגישו סטריליים ומבלבלים. הפכנו את הקירות לכלי ניווט אומנותי—כל אזור קיבל קיר מיתוג ייחודי עם קוד צבע ואלמנט גרפי שמנחה את המבקרים באופן טבעי. כך הפכנו אתגר לוגיסטי להזדמנות מיתוגית.</p>
+          <p class="portfolio-case-studies-card-deliverables"><strong>הביצוע:</strong> מערכת קירות אומנות מקודדת, סימון כיווני משולב בעיצוב, חומרים עמידים לתנועה גבוהה, התקנה מהירה בשעות לילה</p>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="portfolio-case-studies-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="portfolio-case-studies-fade-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#D2B48C;stop-opacity:0.4"></stop>
+          <stop offset="100%" style="stop-color:#D2B48C;stop-"></stop>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="1200" height="30" fill="url(#portfolio-case-studies-fade-gradient)"></rect>
+      <path d="M0,35 Q100,33 200,35 T400,35 Q500,33 600,35 T800,35 Q900,33 1000,35 T1200,35" stroke="#D2B48C" stroke-width="1.5" fill="none" stroke-dasharray="8,4"></path>
+      <rect x="0" y="40" width="1200" height="20" fill="#F6EEE2"></rect>
+    </svg>
+  </div>
+</section>
+
+<section class="portfolio-reviews-section" data-layout-spec="Portfolio-reviews">
+  <div class="portfolio-reviews-container">
+    <div class="portfolio-reviews-header">
+      <h2>מה לקוחות מבחינים</h2>
+    </div>
+    <div class="portfolio-reviews-grid">
+      <div class="portfolio-reviews-card">
+        <p class="portfolio-reviews-quote">"התהליך היה רגוע ומדויק מתחילתו ועד סופו. כל פרט קיבל תשומת לב והתוצאה מדברת בעד עצמה."</p>
+        <p class="portfolio-reviews-attribution">— רונית כהן, מנהלת מלון בוטיק</p>
+      </div>
+      <div class="portfolio-reviews-card">
+        <p class="portfolio-reviews-quote">"החלל שלנו הפך להרבה יותר מזמין. האורחים מרגישים את ההבדל ברגע שהם נכנסים."</p>
+        <p class="portfolio-reviews-attribution">— יוסי לוי, בעלים של מסעדה</p>
+      </div>
+      <div class="portfolio-reviews-card">
+        <p class="portfolio-reviews-quote">"הדיוק והתשומת לב לפרטים הקטנים יצרו אווירה שמשדרת מקצועיות וחום בו זמנית."</p>
+        <p class="portfolio-reviews-attribution">— דנה אברהם, מנכ"לית חברת הייטק</p>
+      </div>
+      <div class="portfolio-reviews-card">
+        <p class="portfolio-reviews-quote">"העבודה עם הצוות הייתה חוויה נעימה. הם הקשיבו, הבינו והביאו את החזון שלנו לחיים."</p>
+        <p class="portfolio-reviews-attribution">— אורי שפירא, מנהל לובי מסחרי</p>
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-reviews-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,120 Q300,40 600,60 T1200,50 L1200,120 Z" fill="#C76B4B"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="portfolio-cta-section" data-layout-spec="Portfolio-cta">
+  <div class="portfolio-cta-container">
+    <div class="portfolio-cta-content">
+      <h2 class="portfolio-cta-title">רוצים את התחושה הזאת במקום שלכם?</h2>
+      <p class="portfolio-cta-text">נשמח לשמוע על החלל שלכם – ספרו לנו על סוג המקום, לוח הזמנים והחזון שלכם. ניצור עבורכם חוויה ויזואלית שמדברת עם האורחים שלכם.</p>
+      <div class="portfolio-cta-buttons">
+        <a href="contact.html" class="portfolio-cta-btn portfolio-cta-btn-primary">צרו קשר</a>
+        <a href="services.html" class="portfolio-cta-btn portfolio-cta-btn-secondary">התהליך והשירותים</a>
+      </div>
+    </div>
+  </div>
+</section>
+  </main>
+  
+  <footer class="site-footer"><div class="footer-container"><div class="footer-grid"><div class="footer-section footer-about"><img class="logo" data-placeholder="logo" data-context="business logo" width="150" height="40" src="" alt="סטודיו 242"><p class="footer-description">מובילים בעיצוב ומיתוג פנים, יוצרים חללים ייחודיים המשקפים את האישיות והסגנון שלכם.</p><div class="social-links"><a href="[facebook_handle]" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="[instagram_handle]" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="[whatsapp_handle]" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div></div><div class="footer-section footer-links"><h3>קישורים מהירים</h3><ul><li><a href="/services">שירותים</a></li><li><a href="/portfolio">תיק עבודות</a></li><li><a href="/contact">צור קשר</a></li></ul></div><div class="footer-section footer-contact"><h3>יצירת קשר</h3><ul class="contact-list"><li><i class="fas fa-envelope"></i><a href="mailto:[business_email]">[business_email]</a></li><li><i class="fas fa-phone"></i><a href="tel:[business_phone]">[business_phone]</a></li><li><a href="/"><i class="fas fa-map-marker-alt"></i><span>[business_address]</span></a></li></ul></div></div><div class="footer-bottom"><div class="footer-bottom-content"><div class="legal-links"><a href="/privacy">מדיניות פרטיות</a><span class="separator">|</span><a href="/terms">תנאים והגבלות</a><span class="separator">|</span><a href="/accessibility">הצהרת נגישות</a></div><p class="copyright">© 2026 סטודיו 242. כל הזכויות שמורות.</p><a href="https://zappy5.com" target="_blank" class="zappy-attribution">Generated by Zappy</a></div></div></div></footer>
+  
+  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  
+  <script src="/script.js"></script>
+
+    <div data-integration="accessibility:toolbar"></div>
+
+    <script id="zappy-mobile-submenu-script">
+    (function() {
+      function initMobileSubmenuToggles() {
+        if (window.innerWidth > 768) {
+          document.querySelectorAll('.mobile-submenu-toggle').forEach(function(btn) { btn.remove(); });
+          document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) { menu.classList.remove('mobile-expanded'); });
+          return;
+        }
+        var items = document.querySelectorAll('.nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu)');
+        items.forEach(function(li) {
+          if (li.querySelector('.mobile-submenu-toggle')) return;
+          var submenu = li.querySelector('.sub-menu');
+          var parentLink = li.querySelector(':scope > a');
+          if (!submenu || !parentLink) return;
+          var toggleBtn = document.createElement('button');
+          toggleBtn.className = 'mobile-submenu-toggle';
+          toggleBtn.setAttribute('aria-label', 'Toggle submenu');
+          toggleBtn.setAttribute('type', 'button');
+          parentLink.insertAdjacentElement('afterend', toggleBtn);
+          toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault(); e.stopPropagation();
+            document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) {
+              if (menu !== submenu) { menu.classList.remove('mobile-expanded'); var t = menu.parentElement.querySelector('.mobile-submenu-toggle'); if(t) t.classList.remove('expanded'); }
+            });
+            submenu.classList.toggle('mobile-expanded');
+            toggleBtn.classList.toggle('expanded');
+          });
+        });
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initMobileSubmenuToggles); }
+      else { initMobileSubmenuToggles(); }
+      var resizeTimer; window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(initMobileSubmenuToggles, 250); });
+      // Re-initialize when mobile menu becomes visible (MutationObserver)
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes') {
+            var target = mutation.target;
+            if (target.classList && (target.classList.contains('active') || target.classList.contains('open'))) {
+              setTimeout(initMobileSubmenuToggles, 100);
+            }
+          }
+        });
+      });
+      setTimeout(function() {
+        document.querySelectorAll('.mobile-menu, .nav-menu, #navMenu, nav').forEach(function(menu) {
+          observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style'] });
+        });
+      }, 500);
+    })();
+    </script>
+</body></html>
